@@ -1,0 +1,128 @@
+# PasswordStrength.py
+# Name 
+# Date 
+
+""" Assesses passwords for their strength.
+"""
+import string
+import math 
+
+SPECIAL= string.punctuation
+DIGITS= string.digits
+LOWER= string.letters[0:25]
+UPPER= string.letters[25: ]
+
+
+def HowMany(s1,s2):
+    num=0
+    for c in s1:
+      if s2.count(c) >0:
+         num+=1
+    return num 
+
+def HowManyTriplets(s1,s2):
+    num=0
+    for c in range(0, len(s1)): 
+      if s2.count(s1[c]) > 0: #if the character is the one that we wants 
+         if (c+3)<=len(s1): #if the triplet could be found 
+            if s1[c+1] in s2 and s1[c+2] in s2: 
+               num+=1         
+      else:
+         num=0
+    return num
+   
+def B1(s):
+    """ Returns an int that is a score associated
+    with password length.
+    
+    PreC: s is a valid password string."""
+    
+    return 3*min(len(s),15)
+
+def B2(s):
+    pass
+
+def B3(s):
+    pass
+
+def B4(s):
+   """  Returns an int that is a score associated 
+   with the number of special characters in the password """
+ 
+   N=HowMany(s,SPECIAL) #intializes counter that stores the number of special charaters
+   return 6*N
+    
+def B5(s):
+   """ Returns an int that is a score associated
+   with the number of special charactes or digits in the password
+   
+   Attention: excludes the zeroth and last character in the password"""
+   
+   ns=s[1:(len(s)-1)]
+   special=HowMany(ns, SPECIAL) 
+   digits=HowMany(ns, DIGITS)
+   
+   N=special+digits
+   return 3*N
+
+
+def B6(s):
+    """ Returns an int score of 10 if the password contains
+    a lower case letter, an upper case letter, a special character,
+    and a digit. Else, returns an int score of zero"""
+    S=HowMany(s, SPECIAL)
+    D=HowMany(s, DIGITS)
+    L=HowMany(s, LOWER)
+    U=HowMany(s, UPPER)
+    
+    if (S>0) and (D>0) and (L>0) and (U>0):
+      B6=10
+    else:
+         B6=0
+    return B6
+   
+
+def D1(s):
+    pass
+    
+def D2(s):
+    pass
+
+def D3(s):
+    pass
+
+def D4(s):
+   pass
+
+def D5(s):
+    pass
+
+def D6(s):
+    pass
+
+def D7(s):
+    pass
+
+def D8(s):
+   """ Returns an int that represents the deduction
+   related to the number of row-4 triplets """
+   
+   row4='zxcvbnm'
+   N=HowManyTriplets(s, row4)
+   return 3*N 
+    
+def PWS(s):
+    pass
+
+    
+if __name__ == '__main__':
+    s = raw_input('Enter a string: ')
+    print 'B1 = %2d' % (B1(s))
+    print 'B4 = %2d' % (B4(s))
+    print 'B5 = %2d' % (B5(s))
+    print 'B6 = %2d' % (B6(s))
+    print 'D8 = %2d' % (D8(s))
+    
+           
+    
+
