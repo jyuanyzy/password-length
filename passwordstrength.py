@@ -108,7 +108,12 @@ def D7(s):
     return 3*HowManyTriplets(s,ROW3)
 
 def D8(s):
-    pass
+   """ Returns an int that represents the deduction
+   related to the number of row-4 triplets """
+   
+   row4='zxcvbnm'
+   N=HowManyTriplets(s, row4)
+   return 3*N 
     
 def PWS(s):
     pass
@@ -120,6 +125,7 @@ if __name__ == '__main__':
     print 'D4 = %2d' % (D4(s))
     print 'D6 = %2d' % (D6(s))
     print 'D7 = %2d' % (D7(s))
+    print 'D8 = %2d' % (D8(s))
     
            
     
